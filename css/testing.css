@@ -1,0 +1,192 @@
+
+/* =========================================
+1. GOOGLE FONTS & GLOBAL VARIABLES
+========================================= */
+
+:root {
+
+    /* Typography */
+    --font-heading: 'Libre Baskerville', serif;
+    --font-body: 'Libre Franklin', sans-serif;
+
+    /* Colors - Temporary foundation */
+    --color-primary: #2F493F;
+    --color-secondary: #D8E0D5;
+    --color-background: #FAF9F6;
+    --color-surface: #FFFFFF;
+    --color-text: #252923;
+    --color-muted: #777D75;
+    --color-border: #E5E7E1;
+
+    /* Typography sizes */
+    --text-xs: 12px;
+    --text-sm: 14px;
+    --text-base: 16px;
+    --text-lg: 20px;
+    --text-xl: 28px;
+    --text-2xl: 40px;
+
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 64px;
+
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+2. CSS RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+3. GLOBAL STYLING
+========================================= */
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+
+/* =========================================
+4. LANDING PAGE
+========================================= */
+
+.landing-container {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: var(--spacing-lg);
+}
+
+.landing-content {
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: var(--color-primary);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 3px;
+
+    margin-bottom: var(--spacing-md);
+}
+
+.landing-content h1 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--spacing-md);
+}
+
+.landing-description {
+    color: var(--color-muted);
+    margin-bottom: var(--spacing-xl);
+}
+
+
+/* =========================================
+5. ROLE CARDS
+========================================= */
+
+.role-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.role-card {
+    display: block;
+
+    padding: var(--spacing-lg);
+
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-card);
+
+    text-align: left;
+
+    transition: 0.3s ease;
+}
+
+.role-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.role-card h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--spacing-xs);
+}
+
+.role-card p {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+}
+
+
+/* =========================================
+6. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    .role-links {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-content h1 {
+        font-size: var(--text-xl);
+    }
+
+    .landing-container {
+        padding: var(--spacing-md);
+    }
+
+}

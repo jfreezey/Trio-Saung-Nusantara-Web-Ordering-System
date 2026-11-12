@@ -1,0 +1,199 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.login {
+    display: flex;
+    flex-direction:row;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logo {
+    background-color: var(--bg-brown);
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.content {
+    color: var(--bg-cream);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-saung {
+    width: 55%;
+    max-width: 60%;
+    height: auto;
+}
+
+.title {
+    font-size: 56px;
+    font-family: var(--font-serif);
+    font-weight: 700;
+}
+
+.tagline {
+    font-size: 20px;
+    font-family: var(--font-sans);
+}
+
+.login-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 470px;
+    height: auto;
+    border-radius: var(--rad-card);
+    box-shadow: var(--shadow-card);
+    padding: 32px;
+}
+
+.form-login {
+    background-color: var(--bg-cream);
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    color: var(--bg-brown);
+}
+
+.header h2 {
+    font-family: var(--font-serif);
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.header p {
+    font-family: var(--font-sans);
+    text-align: center;
+}
+
+.input-kolom {
+    font-family: var(--font-sans);
+    color: var(--bg-brown);
+    text-align: left;
+    margin-bottom: 24px;
+}
+
+.input-kolom label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-size: 16px;
+}
+
+.input-kolom input[type="email"],
+.pass-box input[type="password"],
+.pass-box input[type="text"] {
+    width: 92%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1px solid var(--bg-brown);
+    background-color: var(--bg-cream);
+    border-radius: var(--rad-small);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    outline: none;
+}
+
+#email #password {
+    color: var(--placeholder);
+}
+
+.pass-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pass-box input {
+    padding-right: 48px;
+}
+
+.eye-btn {
+    position: absolute;
+    right: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.btn-visible, .btn-not-visible {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--bg-gold);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+}
+
+.btn-visible {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 6C5.188 6 1 12 1 12s4.188 6 11 6s11-6 11-6s-4.188-6-11-6m0 10c-3.943 0-6.926-2.484-8.379-4c1.04-1.085 2.862-2.657 5.254-3.469A3.96 3.96 0 0 0 8 11a4 4 0 0 0 8 0a3.96 3.96 0 0 0-.875-2.469c2.393.812 4.216 2.385 5.254 3.469c-1.455 1.518-4.437 4-8.379 4'/%3E%3C/svg%3E");
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+}
+
+.btn-not-visible {
+    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M1 12s4.188-6 11-6c.947 0 1.839.121 2.678.322L8.36 12.64A4 4 0 0 1 8 11c0-.937.335-1.787.875-2.469c-2.392.812-4.214 2.385-5.254 3.469a15 15 0 0 0 2.98 2.398l-1.453 1.453C2.497 14.13 1 12 1 12m22 0s-4.188 6-11 6c-.946 0-1.836-.124-2.676-.323L5 22l-1.5-1.5l17-17L22 5l-3.147 3.147C21.501 9.869 23 12 23 12m-2.615.006a14.8 14.8 0 0 0-2.987-2.403L16 11a4 4 0 0 1-4 4l-.947.947c.31.031.624.053.947.053c3.978 0 6.943-2.478 8.385-3.994'/%3E%3C/svg%3E");
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+}
+
+.error-box {
+    background-color: var(--bg-error);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+}
+
+.error-box.hidden {
+    display: none;
+}
+
+.btn-masuk {
+    color: var(--white);
+    border: none;
+    width: 100%;
+    height: 48px;
+    background-color: var(--primary-green);
+    border-radius: var(--rad-medium);
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+}
+
+.btn-masuk:hover {
+    background-color: var(--green-hover-btn);
+}
+

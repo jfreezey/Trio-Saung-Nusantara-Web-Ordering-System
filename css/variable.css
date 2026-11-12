@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cookie&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Pinyon+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cookie&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Pinyon+Script&display=swap');
+
+:root {
+    /* font */
+    --font-serif: 'Libre Baskerville', Georgia, serif;
+    --font-sans: 'Libre Franklin', system-ui, -apple-system, sans-serif;
+
+    /* main color */
+    --bg-brown: #3E2723;
+    --bg-cream: #F5EDE3;
+    --bg-gold: #C68B2C;
+    --white: #ffffff;
+    --primary-green: #1B4332;
+    --bg-error: #EEC5C5;
+
+    /* text color & error*/
+    --placeholder: #9E9391;
+    --warning: #C53D3D;
+
+    /* radius & shadow */
+    --rad-small: 12px;
+    --rad-medium: 16px;
+    --rad-card: 24px;
+    --shadow-card: 0 10px 30px rgba(62, 39, 35, 0.08);
+
+    /* button */
+    --green-hover-btn: #122D21;
+
+}

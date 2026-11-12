@@ -1,0 +1,58 @@
+<!-- login untuk kasir dan admin -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trio Saung Nusantara</title>
+
+    <link rel="stylesheet" href="../css/variable.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="login">
+        <!-- bagian kiri -->
+        <section class="logo">
+            <div class="content">
+                <img src="../assets/images/logo/saung.png" alt="Trio Saung" class="img-saung">
+                <h1 class="title">Trio Saung<br>Nusantara</h1>
+                <p class="tagline">Tiga Sentuhan, Satu Cita Rasa Nusantara.</p>
+            </div>
+        </section>
+
+        <!-- bagian kanan -->
+        <section class="form-login">
+            <div class="header">
+                <h2>Selamat Datang</h2>
+                <p>Silahkan login terlebih dahulu</p>
+            </div>
+
+            <!-- login card -->
+            <div class="login-card">
+                <form id="loginForm">
+                    <div class="input-kolom">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Masukkan alamat email" required>
+                    </div>
+
+                    <div class="input-kolom">
+                        <label for="password">Kata Sandi</label>
+                        <div class="pass-box">
+                            <input type="password" id="password" placeholder="Masukkan kata sandi" minlength="8" required>
+                            <button type="button" class="eye-btn">
+                                <span class="btn-visible"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- pesan error box -->
+                    <div id="error-msg" class="error-box hidden"></div>
+
+                    <button type="submit" class="btn-masuk">Masuk</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
