@@ -70,22 +70,21 @@ html, body {
     align-items: center;
 }
 
-.header {
-    color: var(--bg-brown);
-    text-align: center;
-}
-
 .header h2 {
     font-family: var(--font-serif);
     text-align: center;
     font-size: clamp(1.5rem, 2.5rem, 2rem);
     font-weight: 600;
+    color: var(--bg-brown);
+    margin-bottom: 16px;
 }
 
 .header p {
     font-family: var(--font-sans);
     text-align: center;
     font-size: 1rem;
+    color: #7E6F6C;
+    margin-bottom: 16px;
 }
 
 .input-kolom {
