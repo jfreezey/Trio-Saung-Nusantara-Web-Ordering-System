@@ -1,34 +1,119 @@
-
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Trio Saung Nusantara</title>
 
-    <title>Admin Login | Trio Saung Nusantara</title>
-
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../css/variable.css">
+    <link rel="stylesheet" href="../../css/admin.css">
 </head>
-
 <body>
-
-    <main class="landing-container">
-
-        <div class="landing-content">
-
-            <p class="eyebrow">TRIO SAUNG NUSANTARA</p>
-
-            <h1>Admin Login</h1>
-
-            <p class="landing-description">
-                Welcome to the restaurant management system.
-            </p>
-
+    <!-- header logo & nama resto & logout -->
+    <div class="header">
+        <button class="burger-menu" id="burgerToggle" aria-label="Toggle Sidebar">
+            <span class="burger"></span>
+        </button>
+        
+        <div class="logo">
+            <img src="../../assets/images/logo/bulat.png" alt="logo Trio Saung Nusantara" class="logo">
         </div>
 
-    </main>
+        <div class="title">
+            <h1>Trio Saung Nusantara</h1>
+        </div>
+        
+        <button class="btn-logout">
+            <span class="icon-logout"></span>
+            <span>Logout</span>
+        </button>
+    </div>
 
+    <!-- lapis 2 -->
+    <div class="welcome">
+        <!-- bagian kiri -->
+        <section class="acc-card">
+            <span class="profile"></span>
+            <h3>Admin Saung</h3>
+            <p>admin@saung.com</p>
+        </section>
+
+        <!-- bagian kanan -->
+        <section class="welcome-content">
+            <!-- sambutan -->
+            <h1 class="salam">Selamat Datang, Admin!</h1>
+            <p class="sub-salam">Ringkasan aktivitas operasional hari ini.</p>
+
+            <!-- 3 kartu -->
+            <section class="card-list">
+                <div class="card-content">
+                    <div class="icon-card">
+                        <span class="pendapatan"></span>
+                    </div>
+                    <div class="label">
+                        <h3 class="subtitle">Total Pendapatan</h3>
+                        <h3 class="nilai">Rp.1.120.000</h3>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="icon-card">
+                        <span class="pemesanan"></span>
+                    </div>
+                    <div class="label">
+                        <h3 class="subtitle">Total Pemesanan</h3>
+                        <h3 class="nilai">30</h3>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="icon-card">
+                        <span class="menu"></span>
+                    </div>
+                    <div class="label">
+                        <h3 class="subtitle">Menu Tersedia</h3>
+                        <h3 class="nilai">32/32</h3>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+
+    <!-- lapis 3 -->
+    <div class="lapis3">
+        <div class="tab-bar">
+            <button class="tab-active">
+                <span class="dashboard"></span>
+                <span>Dashboard</span>
+            </button>
+            <button class="tab">
+                <span class="icon-menu"></span>
+                <span>Menu</span>
+            </button>
+            <button class="tab">
+                <span class="akun"></span>
+                <span>Akun</span>
+            </button>
+            <button class="tab">
+                <span class="laporan"></span>
+                <span>Laporan Transaksi</span>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <section class="content1">
+                <h3>Penjualan 7 Hari Terakhir</h3>
+            </section>
+            <section class="content2">
+                <div class="menu-terlaris">
+                    <h3>Top 5 Menu Terlaris</h3>
+                </div>
+                <div class="transaksi">
+                    <h3>Transaksi Terakhir</h3>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="../../js/admin.js"></script>
 </body>
-
 </html>
