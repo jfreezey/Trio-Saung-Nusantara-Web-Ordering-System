@@ -1,20 +1,24 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html, body {
     padding: 0;
     margin: 0;
-    height: 100%;
+    min-height: 100%;
 }
 
 .login {
     display: flex;
     flex-direction:row;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100dvh;
 }
 
 .logo {
     background-color: var(--bg-brown);
-    width: 50vw;
-    height: 100vh;
+    width: 50%;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,22 +31,23 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 480px;
 }
 
 .img-saung {
     width: 55%;
-    max-width: 60%;
+    max-width: 280px;
     height: auto;
 }
 
 .title {
-    font-size: 56px;
+    font-size: clamp(2rem,4vw, 3.5rem);
     font-family: var(--font-serif);
     font-weight: 700;
 }
 
 .tagline {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     font-family: var(--font-sans);
 }
 
@@ -50,7 +55,6 @@ html, body {
     background-color: var(--white);
     width: 100%;
     max-width: 470px;
-    height: auto;
     border-radius: var(--rad-card);
     box-shadow: var(--shadow-card);
     padding: 32px;
@@ -58,8 +62,8 @@ html, body {
 
 .form-login {
     background-color: var(--bg-cream);
-    width: 50vw;
-    height: 100vh;
+    width: 50%;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,18 +72,20 @@ html, body {
 
 .header {
     color: var(--bg-brown);
+    text-align: center;
 }
 
 .header h2 {
     font-family: var(--font-serif);
     text-align: center;
-    font-size: 32px;
+    font-size: clamp(1.5rem, 2.5rem, 2rem);
     font-weight: 600;
 }
 
 .header p {
     font-family: var(--font-sans);
     text-align: center;
+    font-size: 1rem;
 }
 
 .input-kolom {
@@ -100,7 +106,7 @@ html, body {
 .input-kolom input[type="email"],
 .pass-box input[type="password"],
 .pass-box input[type="text"] {
-    width: 92%;
+    width: 100%;
     height: 48px;
     padding: 0 16px;
     border: 1px solid var(--bg-brown);
@@ -119,6 +125,7 @@ html, body {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .pass-box input {
@@ -127,7 +134,7 @@ html, body {
 
 .eye-btn {
     position: absolute;
-    right: 24px;
+    right: 12px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -197,3 +204,37 @@ html, body {
     background-color: var(--green-hover-btn);
 }
 
+/* tablet portrait */
+@media (max-width: 900px) {
+    .logo,
+    .form-login {
+        padding: 28px 24px;
+    }
+
+    .login-card {
+        padding: 24px;
+    }
+}
+
+/* hp */
+@media (max-width: 767px) {
+    .login {
+        flex-direction: column;
+    }
+
+    .logo,
+    .form-login {
+        width: 100%;
+        min-height: auto;
+        padding: 32px 20px;
+    }
+
+    .form-login {
+        flex: 1;
+    }
+
+    .img-saung {
+        width: 110px;
+        margin-bottom: 12px;
+    }
+}
