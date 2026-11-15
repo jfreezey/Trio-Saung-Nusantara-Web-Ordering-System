@@ -1,11 +1,17 @@
-// logic CRUD laporan, menu, edit
 const burgerToggle = document.getElementById("burgerToggle");
 const tabBar = document.querySelector(".tab-bar");
+
+// cek state tersimpan
+if (window.innerWidth > 992 && localStorage.getItem('sidebarState') === 'closed') {
+    document.body.classList.add('sidebar-closed');
+}
 
 burgerToggle.addEventListener("click", (e) => {
     e.stopPropagation();
     if (window.innerWidth > 992) {
         document.body.classList.toggle("sidebar-closed");
+        const isClosed = document.body.classList.contains("sidebar-closed");
+        localStorage.setItem("sidebarState", isClosed ? "closed" : "open");
     } else {
         document.body.classList.toggle("sidebar-open");
     }
@@ -25,6 +31,9 @@ document.addEventListener("click", (e) => {
 window.addEventListener("resize", () => {
     if (window.innerWidth > 992) {
         document.body.classList.remove("sidebar-open");
+        if (localStorage.getItem("sidebarState") === "closed") {
+            document.body.classList.add("sidebar-closed");
+        }
     } else {
         document.body.classList.remove("sidebar-closed");
     }

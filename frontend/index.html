@@ -1,66 +1,58 @@
-
+<!-- login untuk kasir dan admin -->
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Trio Saung Nusantara</title>
 
-    <!-- Fonts -->
-    <!-- libre baskerville -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cookie&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Pinyon+Script&display=swap" rel="stylesheet">
-
-    <!-- libre franklin -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cookie&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Pinyon+Script&display=swap" rel="stylesheet">
-    
-    <!-- Global CSS -->
+    <link rel="stylesheet" href="css/variable.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+    <div class="login">
+        <!-- bagian kiri -->
+        <section class="logo">
+            <div class="content">
+                <img src="assets/images/logo/saung.png" alt="Trio Saung" class="img-saung">
+                <h1 class="title">Trio Saung<br>Nusantara</h1>
+                <p class="tagline">Tiga Sentuhan, Satu Cita Rasa Nusantara.</p>
+            </div>
+        </section>
 
-    <main class="landing-container">
-
-        <div class="landing-content">
-
-            <p class="eyebrow">TRIO SAUNG NUSANTARA</p>
-
-            <h1>
-                Welcome to<br>
-                Trio Saung Nusantara
-            </h1>
-
-            <p class="landing-description">
-                Web-based restaurant ordering and management system.
-            </p>
-
-            <div class="role-links">
-
-                <a href="customer/index.html" class="role-card">
-                    <h2>Customer</h2>
-                    <p>Explore our menu and place your order.</p>
-                </a>
-
-                <a href="admin/login.html" class="role-card">
-                    <h2>Admin</h2>
-                    <p>Manage restaurant data and operations.</p>
-                </a>
-
-                <a href="cashier/login.html" class="role-card">
-                    <h2>Cashier</h2>
-                    <p>Manage incoming orders and payments.</p>
-                </a>
-
+        <!-- bagian kanan -->
+        <section class="form-login">
+            <div class="header">
+                <h2>Selamat Datang</h2>
+                <p>Silahkan login terlebih dahulu</p>
             </div>
 
-        </div>
+            <!-- login card -->
+            <div class="login-card">
+                <form id="loginForm">
+                    <div class="input-kolom">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Masukkan alamat email" required>
+                    </div>
 
-    </main>
+                    <div class="input-kolom">
+                        <label for="password">Kata Sandi</label>
+                        <div class="pass-box">
+                            <input type="password" id="password" placeholder="Masukkan kata sandi" minlength="8" required>
+                            <button type="button" class="eye-btn">
+                                <span class="btn-visible"></span>
+                            </button>
+                        </div>
+                    </div>
 
+                    <!-- pesan error box -->
+                    <div id="error-msg" class="error-box hidden"></div>
+
+                    <button type="submit" class="btn-masuk">Masuk</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    <script src="js/auth.js"></script>
 </body>
 </html>

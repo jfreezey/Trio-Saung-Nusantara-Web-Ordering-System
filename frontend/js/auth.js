@@ -89,7 +89,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Jika Berhasil Login
-        alert(`Login Berhasil! Selamat datang, ${foundUser.role}.`);
-        // window.location.href = foundUser.role === 'Admin' ? '../admin/dashboard.html' : '../kasir/pos.html';
+        window.location.href = 
+            foundUser.role === 'Admin' 
+                ? '/frontend/components/admin/dashboard.html' 
+                : '/frontend/components/kasir/dashboard.html';
     });
 });

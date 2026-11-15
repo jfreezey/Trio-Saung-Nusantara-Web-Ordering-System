@@ -259,6 +259,18 @@ html, body {
     color: var(--bg-brown);
 }
 
+.tab a, .tab-active a {
+    text-decoration: none;
+    color: inherit;
+    background: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
 .tab:hover{
     cursor: pointer;
     background-color: #D1D9D6;
@@ -467,6 +479,13 @@ body.sidebar-closed .tab-active {
     min-height: 48px;
     padding: 0;
     justify-content: center;
+    gap: 0;
+}
+
+body.sidebar-closed .tab a,
+body.sidebar-closed .tab-active a {
+    justify-content: center;
+    padding-left: 0;
     gap: 0;
 }
 
