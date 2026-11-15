@@ -6,7 +6,8 @@
     <title>Admin Trio Saung Nusantara</title>
 
     <link rel="stylesheet" href="../../css/variable.css">
-    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/Admin/admin.css">
+    <link rel="stylesheet" href="../../css/Admin/menu.css">
 </head>
 <body>
     <!-- header logo & nama resto & logout -->
@@ -41,41 +42,32 @@
         <!-- bagian kanan -->
         <section class="welcome-content">
             <!-- sambutan -->
-            <h1 class="salam">Selamat Datang, Admin!</h1>
-            <p class="sub-salam">Ringkasan aktivitas operasional hari ini.</p>
-
-            <!-- 3 kartu -->
-            <section class="card-list">
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="pendapatan"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Total Pendapatan</h3>
-                        <h3 class="nilai">Rp.1.120.000</h3>
-                    </div>
+            <div class="sub-header">
+                <div class="teks">
+                    <h1 class="salam">Manajemen Menu</h1>
+                    <p class="sub-salam">Kelola daftar hidangan, harga, dan ketersediaan stok menu restoran.</p>
                 </div>
-
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="pemesanan"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Total Pemesanan</h3>
-                        <h3 class="nilai">30</h3>
-                    </div>
+                <div class="adding">
+                    <button class="add-btn">+ Tambah Menu</button>
                 </div>
+            </div>
+            
 
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="menu"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Menu Tersedia</h3>
-                        <h3 class="nilai">32/32</h3>
-                    </div>
-                </div>
-            </section>
+            <!-- search bar -->
+            <div class="search-bar">
+                <span class="icon-search"></span>
+                <input type="search" id="menuSearch" placeholder="Cari nama makanan...">
+                <button class="clear" type="button" aria-label="Hapus pencarian" hidden>×</button>
+            </div>
+
+            <!-- filtering category button -->
+            <div class="category-filter">
+                <button class="filter-active" data-category="semua">Semua</button>
+                <button class="filter-btn" data-category="makanan">Makanan</button>
+                <button class="filter-btn" data-category="minuman">Minuman</button>
+                <button class="filter-btn" data-category="camilan">Camilan</button>
+                <button class="filter-btn" data-category="sambal">Sambal</button>
+            </div>
         </section>
     </div>
 

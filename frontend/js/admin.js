@@ -38,3 +38,29 @@ window.addEventListener("resize", () => {
         document.body.classList.remove("sidebar-closed");
     }
 });
+
+
+// logout button 
+const logoutButton = document.querySelector('.btn-logout');
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('trioSaungSession');
+        window.location.href = '/frontend/index.html';
+    });
+}
+
+// logika clear button search
+const searchInput = document.querySelector('#menuSearch');
+const clearButton = document.querySelector('.clear');
+
+searchInput.addEventListener('input', () => {
+    clearButton.hidden = searchInput.value.length === 0;
+});
+
+clearButton.addEventListener('click', () => {
+    searchInput.value = '';
+    searchInput.focus();
+    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+});
+
