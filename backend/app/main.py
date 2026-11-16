@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.routers import menu
+from app.routers import category
+from app.routers import auth
 
 app = FastAPI(
     title="Trio Saung Nusantara Web Based Ordering Menu System",
@@ -7,6 +9,8 @@ app = FastAPI(
 )
 
 app.include_router(menu.router)
+app.include_router(category.router)
+app.include_router(auth.router)
 
 @app.get("/")
 def home():
