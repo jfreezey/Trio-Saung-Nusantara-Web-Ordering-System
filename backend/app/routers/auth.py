@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import jwt
 
-from app.schemas.auth import LoginRequest, LoginResponse
+from app.schemas.auth import LoginRequest, LoginResponse, UserResponse
 from app.services.auth_service import authenticate_admin
 from app.core.security import decode_access_token
 
@@ -29,7 +29,7 @@ def login_admin(login_data: LoginRequest):
     }
 
 
-# Checking identity from JWT
+# Checking identity from JWT (belum integrate dengan database)
 @router.get("/me")
 def get_current_admin(
     credentials: HTTPAuthorizationCredentials = Depends(security)
