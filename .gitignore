@@ -1,0 +1,28 @@
+# Konfigurasi lokal
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Dependency dan hasil build
+node_modules/
+dist/
+
+# Log, backup, dan credential
+*.log
+*.dump
+*.backup
+backups/
+secrets/
+*.pem
+*.key
+
+# File sistem
+.DS_Store
+Thumbs.db
