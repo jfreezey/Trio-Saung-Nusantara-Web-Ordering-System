@@ -104,17 +104,57 @@
         </div>
 
         <div class="main-content">
-            <section class="content1">
-                <h3>Penjualan 7 Hari Terakhir</h3>
-            </section>
-            <section class="content2">
-                <div class="menu-terlaris">
-                    <h3>Top 5 Menu Terlaris</h3>
-                </div>
-                <div class="transaksi">
-                    <h3>Transaksi Terakhir</h3>
-                </div>
-            </section>
+            <div class="tabel-menu">
+                <table class="daftar-menu">
+                    <!-- heading tabel -->
+                    <thead>
+                        <tr>
+                            <th class="nama-kolom">MENU</th>
+                            <th class="nama-kolom">KATEGORI</th>
+                            <th class="nama-kolom">HARGA</th>
+                            <th class="nama-kolom">STATUS</th>
+                            <th class="nama-kolom">REKOMENDASI</th>
+                            <th class="nama-kolom">KELOLA</th>
+                        </tr>
+                    </thead>
+                    <!-- isi daftar menu -->
+                    <tbody id="isi-tabel">
+                        <!-- Kosong di HTML, baris data akan dimasukkan lewat JS -->
+                        <tr class="baris-menu">
+                            <td>
+                                <div class="info-menu">
+                                    <div class="gambar">
+                                        <img src="/frontend/assets/images/makanan/cakalang.png" alt="Foto Menu" class="foto-menu">
+                                    </div>
+                                    <span class="nama-menu">Nasi Goreng Cakalang</span>
+                                </div>
+                            </td>
+                            <td>Makanan</td>
+                            <td>Rp 45.000</td>
+                            <td>
+                                <div class="ketersediaan">
+                                    <div class="tersedia">Tersedia</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="aksi">
+                                    <span class="fire"></span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="aksi">
+                                    <button type="button" class="btn-kelola btn-edit" data-id="${menu.id}" aria-label="Edit ${menu.menuName}">
+                                        <span class="edit"></span>
+                                    </button>
+                                    <button type="button" class="btn-kelola btn-delete" data-id="${menu.id}" aria-label="Hapus ${menu.menuName}">
+                                        <span class="delete"></span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -130,14 +170,14 @@
             <hr>
 
             <form id="formTambahMenu">
-                <label>
+                <label for="menuName">
                     Nama Menu
                     <input name="menuName" type="text" placeholder="Contoh: Nasi Liwet" required>
                 </label>
 
-                <label>
+                <label for="menuCategory">
                     Kategori
-                    <select name="menuCategory" required>
+                    <select id="menuCategory" name="menuCategory" required>
                         <option value="" disabled selected hidden>Pilih kategori</option>
                         <option value="makanan">Makanan</option>
                         <option value="minuman">Minuman</option>
@@ -154,20 +194,33 @@
                     </div>
                 </div>
 
-                <label>
+                <label for="menuDescription">
                     Deskripsi
-                    <textarea name="menuDescription" rows="3" placeholder="Deskripsi singkat menu"></textarea>
+                    <textarea id="menuDescription" name="menuDescription" rows="3" placeholder="Deskripsi singkat menu"></textarea>
                 </label>
 
-                <label>
+                <label for="menuImage">
                     Foto Menu
-                    <input name="menuImage" type="file" accept="image/*" required>
+                    <input id="menuImage" name="menuImage" type="file" accept="image/*" required>
                 </label>
 
-                <label class="pedas-setting" name="hasSpiceLevel" id="hasSpiceLevel">
-                    <input type="checkbox">
-                    <span class="check-pedas">Tersedia pilihan level pedas</span>
+                <label class="pedas-setting" for="hasSpiceLevel">
+                    <input type="checkbox" name="hasSpiceLevel" id="hasSpiceLevel">
+                    <span class="check-pedas">Tersedia pilihan level pedas.</span>
                 </label>
+
+                <!-- hanya muncul saat katalog menu edit -->
+                <div id="statusGroup" hidden>
+                    <label class="recommended" for="isRecommended">
+                        <input type="checkbox" name="isRecommended" id="isRecommended">
+                        <span class="check-recommend">Tandai sebagai menu rekomendasi.</span>
+                    </label>
+
+                    <label class="sedia-setting" for="isAvailable">
+                        <input type="checkbox" name="isAvailable" id="isAvailable" checked>
+                        <span class="check-sedia">Menu tersedia.</span>
+                    </label>
+                </div>
 
                 <div class="modal-actions">
                     <button class="batal-btn js-close-modal" type="button">Batal</button>
@@ -176,6 +229,21 @@
             </form>
         </section>
     </div>
-    <script src="../../js/admin.js"></script>
+    <!-- 2. Tambahkan tepat di bawah penutup #menuModal (sebelum tag <script>) -->
+    <div class="popup-modal" id="deleteModal" aria-hidden="true">
+        <section class="modal-card modal-delete-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+            <button class="modal-close js-close-delete" type="button" aria-label="Tutup">&times;</button>
+
+            <h2 id="deleteModalTitle">Hapus Menu</h2>
+            <p id="deleteModalText">Apakah Anda yakin ingin menghapus menu ini?</p>
+
+            <div class="modal-actions">
+                <button class="batal-btn js-close-delete" type="button">Batal</button>
+                <button class="hapus-confirm-btn" id="confirmDeleteBtn" type="button">Hapus Menu</button>
+            </div>
+        </section>
+    </div>
+    <script src="../../js/Admin/admin.js"></script>
+    <script src="../../js/Admin/menu.js"></script>
 </body>
 </html>

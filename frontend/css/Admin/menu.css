@@ -305,7 +305,9 @@
 }
 
 /* mengatur checkbox dan textnya */
-#formTambahMenu label.pedas-setting {
+#formTambahMenu label.pedas-setting,
+#formTambahMenu label.recommended,
+#formTambahMenu label.sedia-setting  {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -315,14 +317,18 @@
 }
 
 /* text tersedia */
-.check-pedas {
+.check-pedas,
+.check-recommend,
+.check-sedia {
     font-family: var(--font-sans);
     font-size: 12px;
     color: var(--bg-brown);
 }
 
 /* box settingnya */
-#formTambahMenu label.pedas-setting input[type="checkbox"] {
+#formTambahMenu label.pedas-setting input[type="checkbox"],
+#formTambahMenu label.recommended input[type="checkbox"],
+#formTambahMenu label.sedia-setting input[type="checkbox"] {
     width: 16px;
     height: 16px;
     margin: 0;
@@ -332,7 +338,9 @@
     cursor: pointer;
 }
 
-.check-pedas {
+.check-pedas, 
+.check-recommend,
+.check-sedia {
     display: inline-block;
     width:auto;
     margin: 0;
@@ -342,3 +350,213 @@
     white-space: nowrap;
 }
 
+/* mengatur jarak antar checkbox supaya rapi */
+#statusGroup:not([hidden]) { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+/* lapis 3: tabel daftar menu */
+.tabel-menu {
+    flex: 1;
+    min-width: 0;
+    min-height: 520px;
+    background-color: var(--white);
+    border-radius: var(--rad-card);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.main-content .daftar-menu {
+    margin: 0;
+    padding: 0;
+}
+
+.nama-kolom {
+    font-family: var(--font-sans);
+    color: var(--table-content);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.daftar-menu {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0;
+}
+
+/* setting baris 1 (heading) */
+.daftar-menu thead th {
+    background-color: #ECD8B9;
+    padding: 12px 16px;
+    border-top: 1px solid #3e2723;
+    border-bottom: 1px solid #3e2723;    
+}
+
+/* border kanan tabel (radius) */
+.daftar-menu thead th:first-child {
+    border-top-left-radius: var(--rad-card);
+    border-left: 1px solid #3e2723;
+    text-align: left;
+    width: 32%;
+}
+
+/* border kiri tabel */
+.daftar-menu thead th:last-child {
+    border-top-right-radius: var(--rad-card);
+    border-right: 1px solid #3e2723;
+}
+
+/* --- isi daftar tabel menu --- */
+.daftar-menu tbody td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #D8D4D3;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: #150D0C;
+    text-align: center; 
+    vertical-align: middle;
+}
+
+/* kolom pertama (gambar + nama menu) */
+.daftar-menu tbody td:first-child {
+    text-align: left;
+}
+
+/* setting teks kategori menjadi regular */
+.daftar-menu tbody td:nth-child(2) {
+    font-weight: 400;
+    color: var(--bg-brown);
+}
+
+.gambar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--rad-small);
+    background-color: #D9D9D9;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.foto-menu {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.info-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    color: #150D0C;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.aksi, 
+.ketersediaan {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-kelola {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-kelola:hover {
+    background-color: #F0EEED;
+}
+
+.edit {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%233e2723' d='M14.236 1.764a2.62 2.62 0 0 0-3.707 0L2.657 9.635a2.96 2.96 0 0 0-.772 1.355l-.87 3.386a.5.5 0 0 0 .61.608l3.385-.869a2.95 2.95 0 0 0 1.354-.772l7.872-7.872a2.62 2.62 0 0 0 0-3.707m-3 .707a1.621 1.621 0 1 1 2.293 2.293l-.779.779l-2.293-2.293zM9.75 3.957l2.293 2.293l-6.386 6.386a1.95 1.95 0 0 1-.896.51l-2.567.66l.66-2.567a1.94 1.94 0 0 1 .51-.896z'/%3E%3C/svg%3E");
+}
+
+.delete {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23c53d3d' d='M7 3h2a1 1 0 0 0-2 0M6 3a2 2 0 1 1 4 0h4a.5.5 0 0 1 0 1h-.564l-1.205 8.838A2.5 2.5 0 0 1 9.754 15H6.246a2.5 2.5 0 0 1-2.477-2.162L2.564 4H2a.5.5 0 0 1 0-1zm1 3.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zM9.5 6a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 .5-.5m-4.74 6.703A1.5 1.5 0 0 0 6.246 14h3.508a1.5 1.5 0 0 0 1.487-1.297L12.427 4H3.573z'/%3E%3C/svg%3E");
+}
+
+.fire {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 1200'%3E%3Cpath fill='%23a57425' d='M381.64 1200C135.779 1061.434 71.049 930.278 108.057 751.148c27.321-132.271 116.782-239.886 125.36-371.903c38.215 69.544 54.183 119.691 58.453 192.364C413.413 422.695 493.731 216.546 498.487 0c0 0 316.575 186.01 337.348 466.98c27.253-57.913 40.972-149.892 13.719-209.504c81.757 59.615 560.293 588.838-64.818 942.524c117.527-228.838 30.32-537.611-173.739-680.218c13.628 61.319-10.265 290.021-100.542 390.515c25.014-167.916-23.8-238.918-23.8-238.918s-16.754 94.054-81.758 189.065c-59.36 86.762-100.49 178.847-23.257 339.556'/%3E%3C/svg%3E");
+}
+
+
+.tersedia,
+.tak-tersedia {
+    display: inline-block;
+    border-radius: var(--rad-small);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 16px;
+    white-space: nowrap;
+}
+
+.tersedia{
+    color: var(--tersedia);
+    background-color: var(--bg-tersedia);
+    border: 1px solid var(--tersedia);
+}
+
+.tak-tersedia {
+    color: var(--warning);
+    background-color: var(--bg-taksedia);
+    border: 1px solid var(--warning);
+}
+
+.empty-state {
+    padding: 64px 20px !important;
+    text-align: center !important;
+    color: var(--light-brown) !important;
+    font-weight: 400 !important;
+    border-bottom: none !important;
+}
+
+/* styling popup konfirmasi hapus */
+.modal-delete-card {
+    width: min(100%, 400px);
+}
+
+.hapus-confirm-btn {
+    background-color: var(--warning);
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.hapus-confirm-btn:hover {
+    background-color: var(--hover-warn);
+}
+
+.popup-modal #deleteModalText {
+    font-family: var(--font-sans);
+}

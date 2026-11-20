@@ -17,8 +17,14 @@
     /* text color & error*/
     --placeholder: #9E9391;
     --warning: #C53D3D;
+    --hover-warn: #a32e2e;
     --light-brown: #7E6F6C;
+    --table-content: #524F4C;
 
+    /* status ketersediaan */
+    --tersedia: #257F59;
+    --bg-tersedia: #DAFFEF;
+    --bg-taksedia: #FFE5E5;
     /* radius & shadow */
     --rad-small: 12px;
     --rad-medium: 16px;
