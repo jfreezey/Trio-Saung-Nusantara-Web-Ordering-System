@@ -6,7 +6,9 @@
     <title>Admin Trio Saung Nusantara</title>
 
     <link rel="stylesheet" href="../../css/variable.css">
-    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/Admin/admin.css">
+    <link rel="stylesheet" href="../../css/Admin/menu.css">
+    <link rel="stylesheet" href="../../css/Admin/akun.css">
 </head>
 <body>
     <!-- header logo & nama resto & logout -->
@@ -32,99 +34,149 @@
     <!-- lapis 2 -->
     <div class="welcome">
         <!-- bagian kiri -->
-        <section class="acc-card">
-            <span class="profile"></span>
-            <h3>Admin Saung</h3>
-            <p>admin@saung.com</p>
-        </section>
+        <div class="kiri">
+            <section class="acc-card">
+                <span class="profile"></span>
+                <h3>Admin Saung</h3>
+                <p>admin@saung.com</p>
+            </section>
 
-        <!-- bagian kanan -->
+            <div class="tab-bar">
+                <button class="tab">
+                    <a href="dashboard.html">
+                        <span class="dashboard"></span>
+                        <span>Dashboard</span>
+                    </a>
+                </button>
+
+                <button class="tab">
+                    <a href="menu.html">
+                        <span class="icon-menu"></span>
+                        <span>Menu</span>
+                    </a>
+                </button>
+
+                <button class="tab-active">
+                    <a href="akun.html">
+                        <span class="akun"></span>
+                        <span>Akun</span>
+                    </a>
+                </button>
+
+                <button class="tab">
+                    <a href="laporan.html">
+                        <span class="laporan"></span>
+                        <span>Laporan Transaksi</span>
+                    </a>
+                </button>
+            </div>
+        </div>
+        
         <section class="welcome-content">
             <!-- sambutan -->
-            <h1 class="salam">Selamat Datang, Admin!</h1>
-            <p class="sub-salam">Ringkasan aktivitas operasional hari ini.</p>
+            <div class="sub-header">
+                <div class="teks">
+                    <h1 class="salam">Manajemen Akun Kasir & Staf</h1>
+                    <p class="sub-salam">Kelola akun admin dan kasir, hak akses operasional, serta kata sandi login restoran.</p>
+                </div>
+                <div class="adding">
+                    <button class="add-btn" id="openAkunModal" type="button">+ Tambah Akun</button>
+                </div>
+            </div>
 
-            <!-- 3 kartu -->
-            <section class="card-list">
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="pendapatan"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Total Pendapatan</h3>
-                        <h3 class="nilai">Rp.1.120.000</h3>
-                    </div>
+            <!-- tabel akun -->
+            <div class="main-content">
+                <div class="tabel-menu">
+                    <table class="daftar-menu">
+                        <!-- heading tabel -->
+                        <thead>
+                            <tr>
+                                <th class="nama-kolom">EMAIL</th>
+                                <th class="nama-kolom">USERNAME</th>
+                                <th class="nama-kolom">PERAN (ROLE)</th>
+                                <th class="nama-kolom">KATA SANDI</th>
+                                <th class="nama-kolom">STATUS</th>
+                                <th class="nama-kolom">KELOLA</th>
+                            </tr>
+                        </thead>
+                        <!-- isi daftar menu -->
+                        <tbody id="isi-tabel-akun">
+                            <!-- isi melalui js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>        
+    </div>
+
+    <!-- popup modal card tambah akun -->
+    <div class="popup-modal" id="akunModal" aria-hidden="true">
+        <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close js-close-modal" type="button" aria-label="Tutup">
+                &times;
+            </button>
+
+            <h2 id="modalTitle">Tambah Akun</h2>
+            <p id="modalSubtitle">Lengkapi detail akun staf atau admin baru di bawah ini.</p>
+            <hr>
+
+            <form id="formTambahAkun" class="modal-form">
+                <label for="akunEmail">
+                    Email
+                    <input id="akunEmail" name="email" type="email" placeholder="Contoh: kasir1@saung.com" required>
+                </label>
+
+                <label for="akunUsername">
+                    Username
+                    <input id="akunUsername" name="username" type="text" placeholder="Contoh: kasir_pagi" required>
+                </label>
+
+                <label for="akunRole">
+                    Peran (Role)
+                    <select id="akunRole" name="role" required>
+                        <option value="" disabled selected hidden>Pilih peran pengguna</option>
+                        <option value="kasir">Kasir</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </label>
+
+                <label for="akunPassword">
+                    Kata Sandi
+                    <input id="akunPassword" name="password" type="password" placeholder="Minimal 6 karakter" minlength="6" required>
+                </label>
+
+                <!-- hanya muncul saat mode Edit Akun -->
+                <div id="statusGroup" hidden>
+                    <label class="sedia-setting" for="isActive">
+                        <input type="checkbox" name="isActive" id="isActive" checked>
+                        <span class="check-sedia">Akun aktif (dapat digunakan untuk login).</span>
+                    </label>
                 </div>
 
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="pemesanan"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Total Pemesanan</h3>
-                        <h3 class="nilai">30</h3>
-                    </div>
+                <div class="modal-actions">
+                    <button class="batal-btn js-close-modal" type="button">Batal</button>
+                    <button class="simpan-btn" type="submit">Simpan Akun</button>
                 </div>
-
-                <div class="card-content">
-                    <div class="icon-card">
-                        <span class="menu"></span>
-                    </div>
-                    <div class="label">
-                        <h3 class="subtitle">Menu Tersedia</h3>
-                        <h3 class="nilai">32/32</h3>
-                    </div>
-                </div>
-            </section>
+            </form>
         </section>
     </div>
 
-    <!-- lapis 3 -->
-    <div class="lapis3">
-        <div class="tab-bar">
-            <button class="tab">
-                <a href="dashboard.html">
-                    <span class="dashboard"></span>
-                    <span>Dashboard</span>
-                </a>
-            </button>
+    <!-- popup modal konfirmasi hapus akun -->
+    <div class="popup-modal" id="deleteAkunModal" aria-hidden="true">
+        <section class="modal-card modal-delete-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+            <button class="modal-close js-close-delete" type="button" aria-label="Tutup">&times;</button>
 
-            <button class="tab">
-                <a href="menu.html">
-                    <span class="icon-menu"></span>
-                    <span>Menu</span>
-                </a>
-            </button>
+            <h2 id="deleteModalTitle">Hapus Akun</h2>
+            <p id="deleteModalText">Apakah Anda yakin ingin menghapus akun ini?</p>
 
-            <button class="tab-active">
-                <a href="akun.html">
-                    <span class="akun"></span>
-                    <span>Akun</span>
-                </a>
-            </button>
-
-            <button class="tab">
-                <a href="laporan.html">
-                    <span class="laporan"></span>
-                    <span>Laporan Transaksi</span>
-                </a>
-            </button>
-        </div>
-
-        <div class="main-content">
-            <section class="content1">
-                <h3>Penjualan 7 Hari Terakhir</h3>
-            </section>
-            <section class="content2">
-                <div class="menu-terlaris">
-                    <h3>Top 5 Menu Terlaris</h3>
-                </div>
-                <div class="transaksi">
-                    <h3>Transaksi Terakhir</h3>
-                </div>
-            </section>
-        </div>
+            <div class="modal-actions">
+                <button class="batal-btn js-close-delete" type="button">Batal</button>
+                <button class="hapus-confirm-btn" id="confirmDeleteBtn" type="button">Hapus Akun</button>
+            </div>
+        </section>
     </div>
-    <script src="../../js/admin.js"></script>
+
+    <script src="../../js/Admin/admin.js"></script>
+    <script src="../../js/Admin/akun.js"></script>
 </body>
 </html>

@@ -186,23 +186,27 @@
     cursor: pointer;
 }
 
-#formTambahMenu {
+#formTambahMenu,
+#formTambahAkun {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
 /* warna teks label */
-#formTambahMenu label {
+#formTambahMenu label,
+#formTambahAkun label {
     display: grid;
-    gap: 6px;
+    gap: 8px;
     color: var(--bg-brown); 
 }
 
 /* warna input dan kategori pemilihan*/
 #formTambahMenu input,
 #formTambahMenu select,
-#formTambahMenu textarea {
+#formTambahMenu textarea,
+#formTambahAkun input,
+#formTambahAkun select {
     box-sizing: border-box;
     width: 100%;
     padding: 12px;
@@ -213,7 +217,8 @@
 }
 
 /* menambahkan svg next */
-#formTambahMenu select {
+#formTambahMenu select,
+#formTambahAkun select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c3a21' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -226,20 +231,23 @@
 
 /* warna placeholder*/
 #formTambahMenu input::placeholder,
-#formTambahMenu textarea::placeholder {
+#formTambahMenu textarea::placeholder,
+#formTambahAkun input::placeholder {
     color: var(--placeholder);
     font-family: var(--font-sans);    
     font-size: 12px;
 }
 
 /* warna untuk Pilih Kategori saat blom di pilih */
-#formTambahMenu select:invalid {
+#formTambahMenu select:invalid,
+#formTambahAkun select:invalid {
     color: var(--placeholder);
     font-family: var(--font-sans);
 }
 
 /* warna pada pilihan kategori (option)*/
-#formTambahMenu select option {
+#formTambahMenu select option,
+#formTambahAkun select option {
     color: var(--bg-brown);
     background-color: #fff;
 }
@@ -250,7 +258,9 @@
 
 #formTambahMenu input:focus,
 #formTambahMenu select:focus,
-#formTambahMenu textarea:focus {
+#formTambahMenu textarea:focus,
+#formTambahAKun input:focus, 
+#formTambahAkun select:focus {
     outline: 2px solid #257F59; 
 }
 
@@ -298,7 +308,7 @@
 .rupiah {
     font-family: var(--font-sans);
     font-size: 16px;
-    color: var(--light-brown);
+    color: var(--placeholder);
     pointer-events: none;
     user-select: none;
     margin-right:8px;
@@ -307,7 +317,8 @@
 /* mengatur checkbox dan textnya */
 #formTambahMenu label.pedas-setting,
 #formTambahMenu label.recommended,
-#formTambahMenu label.sedia-setting  {
+#formTambahMenu label.sedia-setting,
+#formTambahAkun label.sedia-setting  {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -328,7 +339,8 @@
 /* box settingnya */
 #formTambahMenu label.pedas-setting input[type="checkbox"],
 #formTambahMenu label.recommended input[type="checkbox"],
-#formTambahMenu label.sedia-setting input[type="checkbox"] {
+#formTambahMenu label.sedia-setting input[type="checkbox"], 
+#formTambahAkun label.sedia-setting input[type="checkbox"] {
     width: 16px;
     height: 16px;
     margin: 0;
