@@ -48,7 +48,7 @@
                     <p class="sub-salam">Kelola daftar hidangan, harga, dan ketersediaan stok menu restoran.</p>
                 </div>
                 <div class="adding">
-                    <button class="add-btn">+ Tambah Menu</button>
+                    <button class="add-btn" id="openMenuModal" type="button">+ Tambah Menu</button>
                 </div>
             </div>
             
@@ -116,6 +116,65 @@
                 </div>
             </section>
         </div>
+    </div>
+
+    <!-- popup modal tambah menu -->
+    <div class="popup-modal" id="menuModal" aria-hidden="true">
+        <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close js-close-modal" type="button" aria-label="Tutup">
+                &times;
+            </button>
+
+            <h2 id="modalTitle">Tambah Menu</h2>
+            <p>Lengkapi detail hidangan baru dibawah ini.</p>
+            <hr>
+
+            <form id="formTambahMenu">
+                <label>
+                    Nama Menu
+                    <input name="menuName" type="text" placeholder="Contoh: Nasi Liwet" required>
+                </label>
+
+                <label>
+                    Kategori
+                    <select name="menuCategory" required>
+                        <option value="" disabled selected hidden>Pilih kategori</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                        <option value="camilan">Camilan</option>
+                        <option value="sambal">Sambal</option>
+                    </select>
+                </label>
+
+                <div class="group-price">
+                    <label for="menuPrice">Harga</label>
+                    <div class="price-setting">
+                        <span class="rupiah">Rp</span>
+                        <input id="menuPrice" name="menuPrice" type="text" inputmode="numeric" placeholder="25.000" required>
+                    </div>
+                </div>
+
+                <label>
+                    Deskripsi
+                    <textarea name="menuDescription" rows="3" placeholder="Deskripsi singkat menu"></textarea>
+                </label>
+
+                <label>
+                    Foto Menu
+                    <input name="menuImage" type="file" accept="image/*" required>
+                </label>
+
+                <label class="pedas-setting" name="hasSpiceLevel" id="hasSpiceLevel">
+                    <input type="checkbox">
+                    <span class="check-pedas">Tersedia pilihan level pedas</span>
+                </label>
+
+                <div class="modal-actions">
+                    <button class="batal-btn js-close-modal" type="button">Batal</button>
+                    <button class="simpan-btn" type="submit">Simpan Menu</button>
+                </div>
+            </form>
+        </section>
     </div>
     <script src="../../js/admin.js"></script>
 </body>

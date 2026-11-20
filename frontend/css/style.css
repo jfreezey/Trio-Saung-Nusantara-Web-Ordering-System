@@ -83,7 +83,7 @@ html, body {
     font-family: var(--font-sans);
     text-align: center;
     font-size: 1rem;
-    color: #7E6F6C;
+    color: var(--light-brown);
     margin-bottom: 16px;
 }
 
