@@ -1,144 +1,57 @@
+"""Endpoint menu. GET publik, ubah ketersediaan untuk admin & kasir, sisanya admin."""
+from uuid import UUID
 
-from fastapi import APIRouter, HTTPException
-from app.schemas.menu import (
-    MenuCreate,
-    MenuUpdate,
-    MenuAvailabilityUpdate
-)
+from fastapi import APIRouter, Depends, File, Query, UploadFile
 
-router = APIRouter(
-    prefix="/api/menus",
-    tags=["Menus"]
-)
+from app.core.database import DbConn
+from app.core.deps import require_admin, require_staff
+from app.schemas.menu import MenuAvailabilityUpdate, MenuCreate, MenuUpdate
+from app.services import menu_service
 
-
-# Dummy data sementara
-menus = [
-    {
-        "id": 1,
-        "name": "Nasi Liwet",
-        "description": "Nasi liwet khas Sunda",
-        "price": 15000,
-        "category_id": 1,
-        "is_available": True
-    },
-    {
-        "id": 2,
-        "name": "Nasi Putih",
-        "description": "Nasi putih biasa",
-        "price": 5000,
-        "category_id": 1,
-        "is_available": True
-    }
-]
+router = APIRouter(prefix="/api/menus", tags=["Menus"])
 
 
-# get all menu
 @router.get("")
-def get_menus():
-    return {
-        "success": True,
-        "data": menus
-    }
-
-
-# get menu by id
-@router.get("/{menu_id}")
-def get_menu_detail(menu_id: int):
-    for menu in menus:
-        if menu["id"] == menu_id:
-            return {
-                "success": True,
-                "data": menu
-            }
-
-    raise HTTPException(
-        status_code=404,
-        detail="Menu not found"
-    )
-
-
-# post add menu
-@router.post("", status_code=201)
-def create_menu(menu_data: MenuCreate):
-    new_id = max(
-        [menu["id"] for menu in menus],
-        default=0
-    ) + 1
-
-    new_menu = {
-        "id": new_id,
-        **menu_data.model_dump()
-    }
-
-    menus.append(new_menu)
-
-    return {
-        "success": True,
-        "message": "New menu created",
-        "data": new_menu
-    }
-
-
-# put update menu
-@router.put("/{menu_id}")
-def update_menu(menu_id: int, menu_data: MenuUpdate):
-    for index, menu in enumerate(menus):
-        if menu["id"] == menu_id:
-            updated_menu = {
-                "id": menu_id,
-                **menu_data.model_dump()
-            }
-
-            menus[index] = updated_menu
-
-            return {
-                "success": True,
-                "message": "Menu update successed",
-                "data": updated_menu
-            }
-
-    raise HTTPException(
-        status_code=404,
-        detail="Menu not found, please check the menu ID"
-    )
-
-
-# delete remove menu
-@router.delete("/{menu_id}")
-def delete_menu(menu_id: int):
-    for menu in menus:
-        if menu["id"] == menu_id:
-            menus.remove(menu)
-
-            return {
-                "success": True,
-                "message": "Menu delete successed",
-            }
-
-    raise HTTPException(
-        status_code=404,
-        detail="Menu not found, please check the menu ID"
-    )
-
-
-# patch update menu availability
-@router.patch("/{menu_id}/availability")
-def update_menu_availability(
-    menu_id: int,
-    availability_data: MenuAvailabilityUpdate
+def get_menus(
+    category_id: UUID | None = None,
+    search: str | None = Query(default=None, max_length=60),
+    available_only: bool = False,
+    conn=DbConn,
 ):
-    for menu in menus:
-        if menu["id"] == menu_id:
-            menu["is_available"] = availability_data.is_available
+    data = menu_service.list_menus(conn, category_id, search, available_only)
+    return {"success": True, "data": data}
 
-            return {
-                "success": True,
-                "message": "Menu availability update successed",
-                "data": menu
-            }
 
-    raise HTTPException(
-        status_code=404,
-        detail="Menu not found, please check the menu ID"
-    )
+@router.get("/{menu_id}")
+def get_menu_detail(menu_id: UUID, conn=DbConn):
+    return {"success": True, "data": menu_service.get_menu(conn, menu_id)}
+
+
+@router.post("", status_code=201, dependencies=[Depends(require_admin)])
+def create_menu(body: MenuCreate, conn=DbConn):
+    data = menu_service.create_menu(conn, body.model_dump())
+    return {"success": True, "message": "Menu berhasil ditambahkan.", "data": data}
+
+
+@router.put("/{menu_id}", dependencies=[Depends(require_admin)])
+def update_menu(menu_id: UUID, body: MenuUpdate, conn=DbConn):
+    data = menu_service.update_menu(conn, menu_id, body.model_dump())
+    return {"success": True, "message": "Menu berhasil diperbarui.", "data": data}
+
+
+@router.delete("/{menu_id}", dependencies=[Depends(require_admin)])
+def delete_menu(menu_id: UUID, conn=DbConn):
+    menu_service.delete_menu(conn, menu_id)
+    return {"success": True, "message": "Menu berhasil dihapus."}
+
+
+@router.patch("/{menu_id}/availability", dependencies=[Depends(require_staff)])
+def update_menu_availability(menu_id: UUID, body: MenuAvailabilityUpdate, conn=DbConn):
+    data = menu_service.set_availability(conn, menu_id, body.is_available)
+    return {"success": True, "message": "Ketersediaan menu diperbarui.", "data": data}
+
+
+@router.post("/{menu_id}/image", dependencies=[Depends(require_admin)])
+def upload_menu_image(menu_id: UUID, image: UploadFile = File(...), conn=DbConn):
+    data = menu_service.save_menu_image(conn, menu_id, image)
+    return {"success": True, "message": "Gambar menu berhasil diunggah.", "data": data}
