@@ -1,15 +1,15 @@
-// logic login kasir dan admin
 document.addEventListener('DOMContentLoaded', function () {
     const email = document.getElementById('email');
     const pass = document.getElementById('password');
     const eyeBtn = document.querySelector('.eye-btn');
-    const eyeIcon = eyeBtn.querySelector('span')
+    const eyeIcon = eyeBtn.querySelector('span');
     const loginForm = document.getElementById('loginForm');
     const errorMsg = document.getElementById('error-msg');
 
-    eyeBtn.addEventListener('click', function(){
-        // ganti tipe password 
+    // Tampilkan atau sembunyikan password
+    eyeBtn.addEventListener('click', function () {
         const isPassword = pass.getAttribute('type') === 'password';
+
         pass.setAttribute('type', isPassword ? 'text' : 'password');
 
         if (isPassword) {
@@ -21,38 +21,31 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Dummy data untuk simulasi login kasir & admin
-    const registeredUsers = [
-        { email: 'admin@saung.com', password: 'password123', role: 'Admin' },
-        { email: 'kasir@saung.com', password: 'password123', role: 'Kasir' }
-    ];
-
-    // tampilin pesan error dalam login card
+    // Tampilkan pesan error
     function showError(message) {
         errorMsg.textContent = message;
         errorMsg.classList.remove('hidden');
     }
 
-    // hide pesan error
+    // Sembunyikan pesan error
     function hideError() {
         errorMsg.textContent = '';
         errorMsg.classList.add('hidden');
     }
 
-    // sembunyikan error saat user mulai mengetik ulang
+    // Sembunyikan error saat pengguna mengetik
     email.addEventListener('input', hideError);
     pass.addEventListener('input', hideError);
 
-    // Logika Validasi Submit Form
-    loginForm.addEventListener('submit', function (e) {
+    // Proses login menggunakan backend
+    loginForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        hideError(); // Reset pesan error sebelumnya
+        hideError();
 
         const emailVal = email.value.trim();
-        const passVal = pass.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const passVal = pass.value;
 
-        // 1. Validasi Input Kosong
+        // Validasi input kosong
         if (!emailVal) {
             showError('Silakan masukkan alamat email Anda.');
             return;
@@ -63,35 +56,40 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // 2. Validasi Format Email
+        // Validasi format email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (!emailPattern.test(emailVal)) {
             showError('Format email yang Anda masukkan tidak valid.');
             return;
         }
 
-        // 3. Validasi Panjang Minimal Password
-        if (passVal.length < 8) {
-            showError('Kata sandi harus terdiri dari minimal 8 karakter.');
-            return;
+        try {
+            // Kirim email dan password ke backend
+         const result = await loginUser(emailVal, passVal);
+
+        // Ambil data dari respons backend
+        const loginData = result.data;
+
+        // Simpan access token
+        localStorage.setItem('access_token', loginData.access_token);
+
+        // Ambil role pengguna
+        const role = loginData.user.role;
+
+        // Arahkan berdasarkan role
+        if (role === 'admin') {
+            window.location.href = '/frontend/components/admin/dashboard.html';
+
+        } else if (role === 'cashier') {
+            window.location.href = '/frontend/components/kasir/dashboard.html';
+
+        } else {
+            showError('Role pengguna tidak dikenali.');
         }
 
-        // 4. Validasi Kredensial (Email & Password)
-        const foundUser = registeredUsers.find(user => user.email === emailVal);
-
-        if (!foundUser) {
-            showError('Email tidak terdaftar. Periksa kembali email Anda.');
-            return;
+        } catch (error) {
+            showError(error.message || 'Login gagal. Silakan coba lagi.');
         }
-
-        if (foundUser.password !== passVal) {
-            showError('Kata sandi yang Anda masukkan salah.');
-            return;
-        }
-
-        // Jika Berhasil Login
-        window.location.href = 
-            foundUser.role === 'Admin' 
-                ? '/frontend/components/admin/dashboard.html' 
-                : '/frontend/components/kasir/dashboard.html';
     });
 });
