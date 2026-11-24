@@ -26,3 +26,7 @@ secrets/
 # File sistem
 .DS_Store
 Thumbs.db
+
+#gambar upload 
+static/menu-images/*
+!static/menu-images/.gitkeep

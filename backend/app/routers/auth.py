@@ -1,55 +1,31 @@
-from fastapi import APIRouter, HTTPException, Depends, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-import jwt
+"""Endpoint autentikasi admin & kasir. Tidak ada registrasi."""
+from fastapi import APIRouter, Depends
 
-from app.schemas.auth import LoginRequest, LoginResponse, UserResponse
-from app.services.auth_service import authenticate_admin
-from app.core.security import decode_access_token
+from app.core.database import DbConn
+from app.core.deps import require_staff
+from app.core.rate_limit import login_limiter
+from app.schemas.auth import ChangePasswordRequest, LoginRequest
+from app.services import auth_service
 
-
-router = APIRouter(
-    prefix="/api/auth",
-    tags=["Authentication"]
-)
-
-security = HTTPBearer()
+router = APIRouter(prefix="/api/auth", tags=["Authentication"])
 
 
-# Login Admin & cashier role
-@router.post("/login", response_model=LoginResponse)
-def login_admin(login_data: LoginRequest):
-    token = authenticate_admin(
-        email=login_data.email,
-        password=login_data.password
-    )
-
-    return {
-        "access_token": token,
-        "token_type": "bearer"
-    }
+@router.post("/login", dependencies=[Depends(login_limiter)])
+def login(body: LoginRequest, conn=DbConn):
+    data = auth_service.login(conn, body.email, body.password)
+    return {"success": True, "message": "Login berhasil.", "data": data}
 
 
-# Checking identity from JWT (belum integrate dengan database)
 @router.get("/me")
-def get_current_admin(
-    credentials: HTTPAuthorizationCredentials = Depends(security)
+def me(user: dict = Depends(require_staff)):
+    return {"success": True, "data": user}
+
+
+@router.put("/password")
+def change_password(
+    body: ChangePasswordRequest,
+    user: dict = Depends(require_staff),
+    conn=DbConn,
 ):
-    try:
-        payload = decode_access_token(credentials.credentials)
-
-        if payload.get("role") != "Admin":
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Admin access required."
-            )
-
-        return {
-            "user_id": payload["sub"],
-            "role": payload["role"]
-        }
-
-    except jwt.InvalidTokenError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token."
-        )
+    auth_service.change_password(conn, user["id"], body.current_password, body.new_password)
+    return {"success": True, "message": "Kata sandi berhasil diubah. Silakan login ulang."}
