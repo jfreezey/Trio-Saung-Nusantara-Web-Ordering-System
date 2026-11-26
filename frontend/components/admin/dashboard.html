@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Trio Saung Nusantara</title>
 
-    <link rel="stylesheet" href="/frontend/css/variable.css">
-    <link rel="stylesheet" href="/frontend/css/Admin/admin.css">
+    <link rel="stylesheet" href="../../css/variable.css">
+    <link rel="stylesheet" href="../../css/Admin/admin.css">
 </head>
 <body>
     <!-- header logo & nama resto & logout -->
@@ -14,7 +14,7 @@
         <button class="burger-menu" id="burgerToggle" aria-label="Toggle Sidebar">
             <span class="burger"></span>
         </button>
-        
+
         <div class="logo">
             <img src="../../assets/images/logo/bulat.png" alt="logo Trio Saung Nusantara" class="logo">
         </div>
@@ -22,7 +22,7 @@
         <div class="title">
             <h1>Trio Saung Nusantara</h1>
         </div>
-        
+
         <button class="btn-logout">
             <span class="icon-logout"></span>
             <span>Logout</span>
@@ -33,16 +33,16 @@
     <div class="welcome">
         <!-- bagian kiri -->
         <section class="acc-card">
-            <span class="profile"></span>
-            <h3>Admin Saung</h3>
-            <p>admin@saung.com</p>
+            <span class="profile" id="profileAvatar"></span>
+            <h3 id="profileName">Admin Saung</h3>
+            <p id="profileEmail">admin@saung.com</p>
         </section>
 
         <!-- bagian kanan -->
         <section class="welcome-content">
             <!-- sambutan -->
-            <h1 class="salam">Selamat Datang, Admin!</h1>
-            <p class="sub-salam">Ringkasan aktivitas operasional hari ini.</p>
+            <h1 class="salam" id="welcomeTitle">Selamat Datang, Admin!</h1>
+            <p class="sub-salam">Ringkasan aktivitas operasional harian.</p>
 
             <!-- 3 kartu -->
             <section class="card-list">
@@ -52,7 +52,7 @@
                     </div>
                     <div class="label">
                         <h3 class="subtitle">Total Pendapatan</h3>
-                        <h3 class="nilai">Rp.1.120.000</h3>
+                        <h3 class="nilai" id="totalPendapatan">Rp 0</h3>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                     </div>
                     <div class="label">
                         <h3 class="subtitle">Total Pemesanan</h3>
-                        <h3 class="nilai">30</h3>
+                        <h3 class="nilai" id="totalPemesanan">0</h3>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                     </div>
                     <div class="label">
                         <h3 class="subtitle">Menu Tersedia</h3>
-                        <h3 class="nilai">32/32</h3>
+                        <h3 class="nilai" id="menuTersedia">0/0</h3>
                     </div>
                 </div>
             </section>
@@ -112,19 +112,48 @@
         </div>
 
         <div class="main-content">
+            <!-- Grafik Pesanan per Jam -->
             <section class="content1">
-                <h3>Penjualan 7 Hari Terakhir</h3>
+                <div class="content1-header">
+                    <h3>Pesanan per Jam (Hari Ini)</h3>
+                    <div class="peak-badge" id="peakHourBadge">
+                        <div class="peak-text">
+                            <span class="peak-label">Jam Tersibuk</span>
+                            <span class="peak-time" id="peakHourTime">-</span>
+                        </div>
+                        <span class="icon-clock"></span>
+                    </div>
+                </div>
+
+                <div class="hourly-chart" id="hourlyChart">
+                    <!-- Dirender otomatis oleh dashboard.js -->
+                </div>
             </section>
+
+            <!-- Baris bawah: Top 5 Menu & Aktivitas Transaksi -->
             <section class="content2">
                 <div class="menu-terlaris">
                     <h3>Top 5 Menu Terlaris</h3>
+                    <ul class="top-menu-list" id="topMenuList">
+                        <!-- Dirender otomatis oleh dashboard.js -->
+                    </ul>
                 </div>
+
                 <div class="transaksi">
-                    <h3>Transaksi Terakhir</h3>
+                    <div class="transaksi-header">
+                        <h3>Aktivitas Transaksi</h3>
+                        <a href="laporan.html" class="lihat-semua">Lihat Semua</a>
+                    </div>
+                    <ul class="transaksi-list" id="recentTransactionsList">
+                        <!-- Dirender otomatis oleh dashboard.js -->
+                    </ul>
                 </div>
             </section>
         </div>
     </div>
+
+    <script src="/frontend/js/api.js"></script>
     <script src="/frontend/js/Admin/admin.js"></script>
+    <script src="/frontend/js/Admin/dashboard.js"></script>
 </body>
 </html>

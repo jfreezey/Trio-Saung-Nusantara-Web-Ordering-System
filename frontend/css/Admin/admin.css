@@ -573,3 +573,263 @@ body.sidebar-closed .tab-active span:last-child {
         padding-right: 16px;
     }
 }
+
+/* grafik untuk pesanan per jam */
+.acc-card .profile.has-initials {
+    background-image: none;
+    background-color: var(--bg-cream);
+    color: var(--primary-green);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 24px;
+}
+
+.content1-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.content1-header h3 {
+    margin: 0;
+}
+
+.peak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--primary-green);
+    color: var(--white);
+    padding: 8px 14px;
+    border-radius: var(--rad-small);
+    font-family: var(--font-sans);
+}
+
+.peak-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.peak-label {
+    font-size: 10px;
+    opacity: 0.85;
+}
+
+.peak-time {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.icon-clock {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 6v6l4 2m6-2a10 10 0 1 1-20 0a10 10 0 0 1 20 0'/%3E%3C/svg%3E");
+}
+
+/* bar chart */
+.hourly-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+    height: 210px;
+    padding: 24px 8px 4px;
+}
+
+.hour-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.hour-value {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin-bottom: 6px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hour-col:hover .hour-value,
+.hour-col.is-active .hour-value {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hour-bar {
+    width: 100%;
+    max-width: 44px;
+    min-height: 12px;
+    border-radius: 8px 8px 4px 4px;
+    background-color: #DEC18E;
+    transition: background-color 0.2s ease, height 0.35s ease;
+}
+
+.hour-col:hover .hour-bar,
+.hour-col.is-active .hour-bar {
+    background-color: var(--primary-green);
+}
+
+.hour-label {
+    margin-top: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--bg-brown);
+}
+
+/* Top 5 Menu Terlaris & Aktivitas Transaksi */
+.menu-terlaris,
+.transaksi {
+    padding: 20px 24px;
+}
+
+.menu-terlaris h3,
+.transaksi-header h3 {
+    margin: 0 0 16px 0;
+}
+
+.transaksi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.transaksi-header h3 {
+    margin: 0;
+}
+
+.lihat-semua {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-green);
+    text-decoration: none;
+}
+
+.lihat-semua:hover {
+    text-decoration: underline;
+}
+
+.top-menu-list,
+.transaksi-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.top-menu-item,
+.transaksi-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-cream);
+    border: 1px solid #C6B8A8;
+    border-radius: 12px;
+    padding: 10px 14px;
+    min-height: 46px;
+    font-family: var(--font-sans);
+    color: var(--bg-brown);
+}
+
+.rank-badge {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--bg-gold);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.menu-name {
+    font-size: 14px;
+    font-weight: 600;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-sold {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--light-brown);
+}
+
+.transaksi-item {
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.trx-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.trx-code {
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.trx-meta {
+    font-size: 11px;
+    color: var(--light-brown);
+}
+
+.trx-amount {
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.dashboard-empty {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--light-brown);
+    padding: 12px 0;
+}
+
+@media (max-width: 768px) {
+    .hourly-chart {
+        gap: 6px;
+        overflow-x: auto;
+    }
+
+    .hour-label {
+        font-size: 10px;
+    }
+}
