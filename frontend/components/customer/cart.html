@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Pesanan - Trio Saung Nusantara</title>
+
+    <link rel="stylesheet" href="/frontend/css/variable.css">
+    <link rel="stylesheet" href="/frontend/css/Customer/pelanggan.css">
+    <link rel="stylesheet" href="/frontend/css/Customer/cart.css">
+</head>
+<body>
+    <!-- arrow back dan badge meja -->
+    <header class="topbar cart-topbar">
+        <div class="brand-back">
+            <a href="main.html" class="cart-back-btn" id="cart-back-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </a>
+            <span class="brand-name">Trio Saung Nusantara</span>
+        </div>
+        <div class="table-badge" id="table-badge" data-table="">Meja • --</div>
+    </header>
+
+    <main class="cart-page">
+        <h1 class="cart-heading">Ringkasan Pesanan</h1>
+
+        <section class="cart-items-list" id="cart-items-list">
+            <!-- render dari cart.js -->
+        </section>
+
+        <!-- ringkasan pesanan + pajak 12% -->
+        <section class="ringkasan" id="ringkasan">
+            <div class="summary-line">
+                <span>Subtotal</span>
+                <span id="summary-subtotal">Rp 0</span>
+            </div>
+            <div class="summary-line">
+                <span>Pajak</span>
+                <span id="summary-tax">Rp 0</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer tombol checkout pesanan + total harga -->
+    <footer class="checkout-dock" id="checkout-dock">
+        <div class="checkout-dock-inner">
+            <div class="checkout-total-row">
+                <span class="checkout-total-label">Total (termasuk pajak)</span>
+                <strong class="checkout-total-amount" id="summary-grand-total">Rp 0</strong>
+            </div>
+            <button type="button" class="checkout-submit-btn" id="checkout-btn">
+                <span class="btn-spinner" aria-hidden="true"></span>
+                <span class="btn-text">Checkout Pesanan</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- transisi ke pemrosesan (popup dialog) -->
+    <div class="checkout-overlay" id="checkout-overlay" aria-hidden="true">
+        <div class="checkout-popup-dialog">
+            <div class="loading"></div>
+            <p class="overlay-title">Mengirim Pesanan...</p>
+            <p class="overlay-sub">Mohon tunggu sebentar</p>
+        </div>
+    </div>
+
+    <!-- tampilan pesanan diterima -->
+    <section class="order-success-screen" id="order-success-screen" aria-hidden="true">
+            <div class="success-center-content">
+                <!-- animasi checklist-->
+                <div class="success-check-circle">
+                    <svg class="success-check-svg" viewBox="0 0 52 52" aria-hidden="true">
+                        <path class="success-check-path" d="M14 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </div>
+
+                <!-- badge meja -->
+                <div class="success-table-badge" id="success-table-badge">Meja • 05</div>
+
+                <!-- isian popup -->
+                <h2 class="success-heading">Pesanan Diterima</h2>
+                <p class="success-subtitle">
+                    Pesanan Anda sedang dimasak.<br>
+                    Mohon menunggu.
+                </p>
+            </div>
+
+            <!-- tombol kembali ke daftar menu -->
+            <div class="success-bottom-dock">
+                <a href="main.html" class="success-home-btn" id="success-home-btn">
+                    Kembali ke Daftar Menu
+                </a>
+            </div>
+        </section>
+
+    <script src="/frontend/js/Customer/cart.js"></script>
+</body>
+</html>
