@@ -1,3 +1,4 @@
+-- Hanya database test lokal! db.py membungkusnya dalam transaksi dan rollback.
 DO $$
 DECLARE
   a uuid; c uuid; t uuid; s uuid; ac uuid; o uuid; item uuid; other_session uuid;

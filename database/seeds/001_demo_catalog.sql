@@ -1,4 +1,5 @@
---katalog dummy
+-- Hanya katalog dummy pengembangan. Tidak membuat staf/transaksi.
+-- Konflik ID dilewati; menjalankan ulang tidak menimpa perubahan katalog.
 INSERT INTO app.categories(id, name, sort_order) VALUES
 ('10000000-0000-4000-8000-000000000001', 'Makanan', 1),
 ('10000000-0000-4000-8000-000000000002', 'Minuman', 2),
