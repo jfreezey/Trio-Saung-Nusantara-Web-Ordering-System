@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambal - Trio Saung Nusantara</title>
+
+    <link rel="stylesheet" href="/frontend/css/variable.css">
+    <link rel="stylesheet" href="/frontend/css/Customer/pelanggan.css">
+</head>
+<body data-category="Sambal">
+    <header class="topbar topbar-category">
+        <div class="brand-back">
+            <!-- button back -->
+            <a href="main.html" class="back-btn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 18l-6-6 6-6" />
+                </svg>
+            </a>
+            <h1 class="category-page-title">Sambal</h1>
+        </div>
+        
+        <!-- search bar -->
+        <div class="search">
+            <span class="icon-search"></span>
+            <input type="search" placeholder="Cari Sambal..." class="search-bar">
+            <button class="clear" type="button" hidden>×</button>
+        </div>
+
+        <!-- badge meja hasil scan -->
+        <div class="table-badge" id="table-badge" data-table="">Meja • --</div>
+    </header>
+
+    <main class="page">
+        <section class="category-menus">
+            <div class="menu-grid" id="menu-list">
+                <!-- contoh data dummy -->
+                <article class="menu-card" data-id="menu-6" data-has-spicy="false">
+                    <div class="food-image"></div>
+                    <div class="food-info">
+                        <h3>Sambal Matah</h3>
+                        <p>Irisan bawang merah, serai, cabai rawit, dan bunga kecombrang segar.</p>
+                        <div class="food-footer">
+                            <strong>Rp 6.000</strong>
+                            <div class="qty-stepper is-empty" data-id="menu-6">
+                                <button type="button" class="step-btn step-minus">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                                </button>
+                                <span class="step-count">0</span>
+                                <button type="button" class="step-btn step-plus">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-dock" id="cart-dock">
+        <a class="cart-summary" href="cart.html">
+            <div class="cart-left">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M8 11h16l1.5 17h-19L8 11Zm4 2V9a4 4 0 0 1 8 0v4"/>
+                </svg>
+                <span class="cart-count">•&nbsp; 0 item</span>
+            </div>
+            <strong>Rp 0</strong>
+        </a>
+    </div>
+
+    <script src="/frontend/js/Customer/customer.js"></script>
+</body>
+</html>
