@@ -41,12 +41,29 @@ window.addEventListener("resize", () => {
 
 
 // logout button 
-const logoutButton = document.querySelector('.btn-logout');
+// Logout melalui backend agar sesi benar-benar dihapus.
+const logoutButton = document.querySelector(".btn-logout");
 
 if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('trioSaungSession');
-        window.location.href = '/frontend/index.html';
+    logoutButton.addEventListener("click", async function (event) {
+        event.preventDefault();
+
+        try {
+            const response = await fetch("/api/logout", {
+                method: "POST",
+                credentials: "same-origin",
+            });
+
+            if (!response.ok) {
+                alert("Logout gagal. Silakan coba lagi.");
+                return;
+            }
+
+            localStorage.removeItem("trioSaungSession");
+            window.location.replace("/frontend/index.html");
+        } catch (error) {
+            alert("Tidak dapat menghubungi server untuk logout.");
+        }
     });
 }
 

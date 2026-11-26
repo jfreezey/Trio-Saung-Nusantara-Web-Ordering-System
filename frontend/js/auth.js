@@ -1,97 +1,121 @@
-// logic login kasir dan admin
-document.addEventListener('DOMContentLoaded', function () {
-    const email = document.getElementById('email');
-    const pass = document.getElementById('password');
-    const eyeBtn = document.querySelector('.eye-btn');
-    const eyeIcon = eyeBtn.querySelector('span')
-    const loginForm = document.getElementById('loginForm');
-    const errorMsg = document.getElementById('error-msg');
+document.addEventListener("DOMContentLoaded", function () {
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginForm = document.getElementById("loginForm");
+    const errorMsg = document.getElementById("error-msg");
+    const eyeBtn = document.querySelector(".eye-btn");
+    const eyeIcon = eyeBtn?.querySelector("span");
 
-    eyeBtn.addEventListener('click', function(){
-        // ganti tipe password 
-        const isPassword = pass.getAttribute('type') === 'password';
-        pass.setAttribute('type', isPassword ? 'text' : 'password');
+    if (!emailInput || !passwordInput || !loginForm || !errorMsg) {
+        console.error("Elemen form login tidak lengkap.");
+        return;
+    }
 
-        if (isPassword) {
-            eyeIcon.classList.remove('btn-visible');
-            eyeIcon.classList.add('btn-not-visible');
-        } else {
-            eyeIcon.classList.remove('btn-not-visible');
-            eyeIcon.classList.add('btn-visible');
-        }
-    });
+    const submitButton = loginForm.querySelector(
+        'button[type="submit"], input[type="submit"]'
+    );
 
-    // Dummy data untuk simulasi login kasir & admin
-    const registeredUsers = [
-        { email: 'admin@saung.com', password: 'password123', role: 'Admin' },
-        { email: 'kasir@saung.com', password: 'password123', role: 'Kasir' }
-    ];
+    let submitting = false;
 
-    // tampilin pesan error dalam login card
     function showError(message) {
         errorMsg.textContent = message;
-        errorMsg.classList.remove('hidden');
+        errorMsg.classList.remove("hidden");
     }
 
-    // hide pesan error
     function hideError() {
-        errorMsg.textContent = '';
-        errorMsg.classList.add('hidden');
+        errorMsg.textContent = "";
+        errorMsg.classList.add("hidden");
     }
 
-    // sembunyikan error saat user mulai mengetik ulang
-    email.addEventListener('input', hideError);
-    pass.addEventListener('input', hideError);
+    emailInput.addEventListener("input", hideError);
+    passwordInput.addEventListener("input", hideError);
 
-    // Logika Validasi Submit Form
-    loginForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        hideError(); // Reset pesan error sebelumnya
+    // Tombol tampilkan/sembunyikan password.
+    if (eyeBtn) {
+        eyeBtn.addEventListener("click", function (event) {
+            event.preventDefault();
 
-        const emailVal = email.value.trim();
-        const passVal = pass.value.trim();
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const showPassword = passwordInput.type === "password";
+            passwordInput.type = showPassword ? "text" : "password";
 
-        // 1. Validasi Input Kosong
-        if (!emailVal) {
-            showError('Silakan masukkan alamat email Anda.');
+            if (eyeIcon) {
+                eyeIcon.classList.toggle("btn-visible", !showPassword);
+                eyeIcon.classList.toggle("btn-not-visible", showPassword);
+            }
+        });
+    }
+
+    loginForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (submitting) {
             return;
         }
 
-        if (!passVal) {
-            showError('Silakan masukkan kata sandi Anda.');
+        hideError();
+
+        const email = emailInput.value.trim().toLowerCase();
+
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+            showError("Silakan isi email dan kata sandi.");
             return;
         }
 
-        // 2. Validasi Format Email
-        if (!emailPattern.test(emailVal)) {
-            showError('Format email yang Anda masukkan tidak valid.');
-            return;
+        submitting = true;
+
+        if (submitButton) {
+            submitButton.disabled = true;
         }
 
-        // 3. Validasi Panjang Minimal Password
-        if (passVal.length < 8) {
-            showError('Kata sandi harus terdiri dari minimal 8 karakter.');
-            return;
+        try {
+            const response = await fetch("/api/login", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                const message =
+                    typeof data.detail === "string"
+                        ? data.detail
+                        : "Login gagal. Periksa email dan kata sandi.";
+
+                showError(message);
+                return;
+            }
+
+            if (data.user?.role === "admin") {
+                window.location.replace(
+                    "/frontend/components/admin/dashboard.html"
+                );
+            } else if (data.user?.role === "cashier") {
+                window.location.replace(
+                    "/frontend/components/kasir/dashboard.html"
+                );
+            } else {
+                showError("Role akun tidak dikenali.");
+            }
+        } catch (error) {
+            showError(
+                "Tidak dapat menghubungi backend. " +
+                "Pastikan server Python berjalan dan website dibuka lewat port 8000."
+            );
+        } finally {
+            submitting = false;
+
+            if (submitButton) {
+                submitButton.disabled = false;
+            }
         }
-
-        // 4. Validasi Kredensial (Email & Password)
-        const foundUser = registeredUsers.find(user => user.email === emailVal);
-
-        if (!foundUser) {
-            showError('Email tidak terdaftar. Periksa kembali email Anda.');
-            return;
-        }
-
-        if (foundUser.password !== passVal) {
-            showError('Kata sandi yang Anda masukkan salah.');
-            return;
-        }
-
-        // Jika Berhasil Login
-        window.location.href = 
-            foundUser.role === 'Admin' 
-                ? '/frontend/components/admin/dashboard.html' 
-                : '/frontend/components/kasir/dashboard.html';
     });
 });
