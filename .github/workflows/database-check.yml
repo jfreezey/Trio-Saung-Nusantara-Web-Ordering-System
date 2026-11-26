@@ -1,0 +1,47 @@
+name: Database checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  database:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-ci-only-password
+          POSTGRES_DB: trio_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      APP_ENV: test
+      DB_TARGET_LABEL: disposable-ci-database
+      DB_HOST: localhost
+      DB_PORT: '5432'
+      DB_NAME: trio_test
+      DB_ADMIN_USER: postgres
+      DB_ADMIN_PASSWORD: local-ci-only-password
+      DB_SSLMODE: disable
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m compileall -q scripts
+      - run: python scripts/db.py check
+      - run: python scripts/db.py migrate
+      - run: python scripts/db.py migrate
+      - run: python scripts/db.py seed
+      - run: python scripts/db.py seed
+      - run: python scripts/db.py verify
+      - run: python scripts/db.py test-constraints
+
