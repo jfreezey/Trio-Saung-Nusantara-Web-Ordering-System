@@ -18,6 +18,15 @@ burgerToggle.addEventListener("click", (e) => {
 });
 
 document.addEventListener("click", (e) => {
+    // logout button
+    const logoutButton = document.querySelector(".btn-logout");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+            localStorage.removeItem("trioSaungSession");
+            window.location.href = "/frontend/index.html";
+        });
+    }
+    
     if (
         window.innerWidth <= 992 &&
         document.body.classList.contains("sidebar-open") &&

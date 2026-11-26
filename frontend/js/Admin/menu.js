@@ -1,13 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // logout button
-    const logoutButton = document.querySelector(".btn-logout");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", () => {
-            localStorage.removeItem("trioSaungSession");
-            window.location.href = "/frontend/index.html";
-        });
-    }
-
     // search bar & clear button
     const searchInput = document.querySelector("#menuSearch");
     const clearButton = document.querySelector(".clear");
