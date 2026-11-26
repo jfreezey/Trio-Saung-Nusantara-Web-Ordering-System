@@ -1,0 +1,387 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-page {
+    width: 100%;
+    max-width: 680px; 
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding-bottom: 100px;
+}
+
+/* foto menu */
+.detail-hero {
+    position: relative;
+    width: 100%;
+    height: clamp(270px, 42vh, 360px);
+    background-color: #424242; 
+    overflow: hidden;
+}
+
+.detail-carousel {
+    width: 100%;
+    height: 100%;
+}
+
+.detail-carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.detail-carousel img[hidden] {
+    display: none;
+}
+
+/* tombol arrow back */
+.detail-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-cream, #F5EDE3);
+    color: var(--bg-brown);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(30, 18, 15, 0.18);
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s ease;
+}
+
+.detail-back-btn:active {
+    transform: scale(0.92);
+}
+
+.detail-back-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* slide foto */
+.carousel-dots {
+    position: absolute;
+    bottom: 34px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.carousel-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.55);
+    transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+.carousel-dots .dot.active {
+    width: 22px;
+    background-color: #ffffff;
+}
+
+/* background putih */
+.detail-sheet {
+    position: relative;
+    z-index: 6;
+    margin-top: -24px;
+    background-color: #ffffff;
+    border-radius: 26px 26px 0 0;
+    padding: 24px 22px 16px;
+}
+
+.detail-title {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3vw, 26px);
+    font-weight: 700;
+    color: var(--bg-brown);
+    margin: 0 0 8px 0;
+    line-height: 1.25;
+}
+
+.detail-price {
+    font-family: var(--font-sans);
+    font-size: clamp(18px, 2.4vw, 21px);
+    font-weight: 700;
+    color: var(--bg-gold);
+    margin: 0 0 12px 0;
+}
+
+.detail-desc {
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    color: var(--light-brown, #5d4d49);
+    line-height: 1.45;
+    margin: 0 0 24px 0;
+}
+
+/* pilihan level pedas */
+.detail-option-group {
+    margin-bottom: 22px;
+}
+
+.detail-option-group[hidden] {
+    display: none;
+}
+
+.option-label {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--bg-brown);
+    margin: 0 0 10px 0;
+}
+
+.spicy-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.spicy-pill {
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1.2px solid var(--bg-brown);
+    background-color: #ffffff;
+    color: var(--bg-brown);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.spicy-pill.active {
+    background-color: var(--bg-gold);
+    border-color: var(--bg-gold);
+    color: #ffffff;
+}
+
+/* pesan */
+.detail-note-section {
+    margin-bottom: 28px;
+}
+
+.note-textarea {
+    width: 100%;
+    min-height: 104px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.2px solid var(--bg-brown);
+    background-color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: 13.5px;
+    color: var(--bg-brown);
+    resize: none;
+    outline: none;
+}
+
+.note-textarea::placeholder {
+    color: var(--placeholder);
+}
+
+.note-textarea:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 2px rgba(27, 67, 50, 0.12);
+}
+
+/* stepper */
+.detail-stepper-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin: 12px 0 8px;
+}
+
+
+.qty-box-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s ease, background-color 0.18s ease;
+}
+
+.qty-box-btn:active {
+    transform: scale(0.92);
+}
+
+.qty-box-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+}
+
+.qty-box-btn:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn-minus {
+    background-color: #ffffff;
+    border: 1.5px solid var(--primary-green);
+    color: var(--primary-green);
+}
+
+.btn-plus {
+    background-color: var(--primary-green);
+    border: 1.5px solid var(--primary-green);
+    color: #ffffff;
+}
+
+.qty-display {
+    min-width: 28px;
+    text-align: center;
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+/* badge opsional */
+.note-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.note-label-row .option-label {
+    margin: 0;
+}
+
+.optional-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: none;
+    background-color: #D8D4D3;
+    color: var(--bg-brown);
+    font-family: var(--font-sans);
+    font-size: 11.5px;
+    font-weight: 600;
+    line-height: 1;
+    user-select: none;
+}
+
+/* tombol tambah ke keranjang */
+.detail-action-dock {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: #ffffff;
+    padding: 12px 22px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(62, 39, 35, 0.08);
+    box-shadow: 0 -4px 16px rgba(62, 39, 35, 0.06);
+    display: flex;
+    justify-content: center;
+}
+
+.add-to-cart-btn {
+    width: 100%;
+    max-width: 636px;
+    height: 50px;
+    padding: 0 22px;
+    border-radius: 16px;
+    border: none;
+    background-color: var(--primary-green);
+    color: #ffffff;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.22);
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.2s ease;
+}
+
+.add-to-cart-btn strong {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.add-to-cart-btn:not(:disabled):active,
+.add-to-cart-btn:not(:disabled).is-pressed {
+    background-color: #122D21;
+    transform: scale(0.98) translateY(1px);
+}
+
+.add-to-cart-btn:disabled {
+    background-color: #a3b1ab;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+/* tampilan hp */
+@media (max-width: 650px) {
+    .detail-action-dock {
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    }
+
+    .add-to-cart-btn {
+        height: 48px;
+        padding: 0 18px;
+        border-radius: 14px;
+        font-size: 14px;
+    }
+
+    .add-to-cart-btn strong {
+        font-size: 14px;
+    }
+}
+
+/* tampilan tablet & desktop */
+@media (min-width: 681px) {
+    body {
+        background-color: var(--bg-cream, #F5EDE3);
+    }
+
+    .detail-page {
+        margin-top: 24px;
+        margin-bottom: 100px;
+        min-height: auto;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 8px 28px rgba(62, 39, 35, 0.12);
+    }
+}
