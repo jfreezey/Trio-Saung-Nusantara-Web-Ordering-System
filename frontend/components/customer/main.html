@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Trio Saung Nusantara</title>
+
+    <link rel="stylesheet" href="/frontend/css/variable.css">
+    <link rel="stylesheet" href="/frontend/css/Customer/pelanggan.css">
+    
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <img src="../../assets/images/logo/bulat.png" alt="logo Trio Saung Nusantara" class="logo">
+            <span class="brand-name">Trio Saung Nusantara</span>
+        </div>
+        
+        <div class="search">
+            <span class="icon-search"></span>
+            <input type="search" placeholder="Cari Menu..." class="search-bar">
+            <button class="clear" type="button" hidden>×</button>
+        </div>
+        <div class="table-badge" id="table-badge" data-table="">Meja • --</div>
+    </header>
+
+    <main class="page">
+        <!-- bagian kategori -->
+        <section class="categories">
+        <h1 id="category-title">Kategori</h1>
+        <nav class="category-list">
+            <a class="category" href="makanan.html">
+                <img src="/frontend/assets/icons/makanan.svg" alt="" aria-hidden="true" width="100" height="72">
+                <span>Makanan</span>
+            </a>
+            <a class="category" href="minuman.html">
+                <img src="/frontend/assets/icons/minuman.svg" alt="" aria-hidden="true" width="100" height="68">
+                <span>Minuman</span>
+            </a>
+            <a class="category" href="camilan.html">
+                <img src="/frontend/assets/icons/camilan.svg" alt="" aria-hidden="true" width="100" height="72">
+                <span>Camilan</span>
+            </a>
+            <a class="category" href="sambal.html">
+                <img src="/frontend/assets/icons/Sambal.svg" alt="" aria-hidden="true" width="100" height="72">
+                <span>Sambal</span>
+            </a>
+        </nav>
+        </section>
+
+        <!-- bagian rekomendasi -->
+        <section class="recommendations" id="recommendations">
+            <h2 id="recommendation-title">Rekomendasi</h2>
+            
+            <div class="menu-grid" id="menu-list">
+                <article class="menu-card" data-id="menu-1" data-has-spicy="true">
+                    <div class="food-image"></div>
+                    <div class="food-info">
+                        <h3>Nasi Goreng Kecombrang</h3>
+                        <p>Dimasak dengan sambal kecombrang khas buatan Trio Saung Nusantara.</p>
+                        <div class="food-footer">
+                            <strong>Rp 45.000</strong>
+                            <div class="qty-stepper is-empty" data-id="menu-1">
+                                <button type="button" class="step-btn step-minus">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                                </button>
+                                <span class="step-count">0</span>
+                                <button type="button" class="step-btn step-plus">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="menu-card" data-id="menu-2" data-has-spicy="false">
+                    <div class="food-image"></div>
+                    <div class="food-info">
+                        <h3>Es Teh Manis Nusantara</h3>
+                        <p>Teh melati seduh segar dengan gula batu asli.</p>
+                        <div class="food-footer">
+                            <strong>Rp 12.000</strong>
+                            <div class="qty-stepper is-empty" data-id="menu-2">
+                                <button type="button" class="step-btn step-minus">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg>
+                                </button>
+                                <span class="step-count">0</span>
+                                <button type="button" class="step-btn step-plus" >
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div class="cart-dock" id="cart-dock">
+    <a class="cart-summary" href="cart.html">
+        <div class="cart-left">
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+                <path d="M8 11h16l1.5 17h-19L8 11Zm4 2V9a4 4 0 0 1 8 0v4"/>
+            </svg>
+            <span class="cart-count">•&nbsp; 2 item</span>
+        </div>
+        <strong>Rp 90.000</strong>
+    </a>
+</div>
+
+    <script src="/frontend/js/Customer/data-menu.js"></script>
+    <script src="/frontend/js/Customer/customer.js"></script>
+</body>
+</html>
+
