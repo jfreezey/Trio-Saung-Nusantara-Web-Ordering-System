@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
         pass.setAttribute('type', isPassword ? 'text' : 'password');
 
         if (isPassword) {
-            eyeIcon.classList.remove('btn-visible');
-            eyeIcon.classList.add('btn-not-visible');
-        } else {
             eyeIcon.classList.remove('btn-not-visible');
             eyeIcon.classList.add('btn-visible');
+        } else {
+            eyeIcon.classList.remove('btn-visible');
+            eyeIcon.classList.add('btn-not-visible');
         }
     });
 
