@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Trio Saung Nusantara</title>
+    <title>Laporan Penjualan | Admin Trio Saung Nusantara</title>
 
-    <link rel="stylesheet" href="/frontend/css/variable.css">
-    <link rel="stylesheet" href="/frontend/css/Admin/admin.css">
+    <link rel="stylesheet" href="../../css/variable.css">
+    <link rel="stylesheet" href="../../css/Admin/admin.css">
+    <link rel="stylesheet" href="../../css/Admin/menu.css">
+    <link rel="stylesheet" href="../../css/Admin/laporan.css">
 </head>
 <body>
     <!-- header logo & nama resto & logout -->
@@ -14,7 +16,7 @@
         <button class="burger-menu" id="burgerToggle" aria-label="Toggle Sidebar">
             <span class="burger"></span>
         </button>
-        
+
         <div class="logo">
             <img src="../../assets/images/logo/bulat.png" alt="logo Trio Saung Nusantara" class="logo">
         </div>
@@ -22,7 +24,7 @@
         <div class="title">
             <h1>Trio Saung Nusantara</h1>
         </div>
-        
+
         <button class="btn-logout">
             <span class="icon-logout"></span>
             <span>Logout</span>
@@ -33,16 +35,31 @@
     <div class="welcome">
         <!-- bagian kiri -->
         <section class="acc-card">
-            <span class="profile"></span>
-            <h3>Admin Saung</h3>
-            <p>admin@saung.com</p>
+            <span class="profile" id="profileAvatar"></span>
+            <h3 id="profileName">Admin Saung</h3>
+            <p id="profileEmail">admin@saung.com</p>
         </section>
 
         <!-- bagian kanan -->
         <section class="welcome-content">
-            <!-- sambutan -->
-            <h1 class="salam">Selamat Datang, Admin!</h1>
-            <p class="sub-salam">Ringkasan aktivitas operasional hari ini.</p>
+            <div class="laporan-top-header">
+                <div>
+                    <h1 class="salam">Ringkasan &amp; Performa Penjualan</h1>
+                    <p class="sub-salam">Data pendapatan dan performa penjualan Trio Saung Nusantara.</p>
+                </div>
+
+                <div class="laporan-top-actions">
+                    <div class="range-toggle" role="group" aria-label="Filter rentang waktu">
+                        <button type="button" class="range-btn is-active" data-days="7">7 Hari</button>
+                        <button type="button" class="range-btn" data-days="30">30 Hari</button>
+                    </div>
+
+                    <button type="button" class="btn-export-csv" id="exportCsvBtn">
+                        <span class="icon-download"></span>
+                        <span>Ekspor CSV</span>
+                    </button>
+                </div>
+            </div>
 
             <!-- 3 kartu -->
             <section class="card-list">
@@ -52,7 +69,8 @@
                     </div>
                     <div class="label">
                         <h3 class="subtitle">Total Pendapatan</h3>
-                        <h3 class="nilai">Rp.1.120.000</h3>
+                        <h3 class="nilai" id="cardRevenue">Rp 0</h3>
+                        <span class="trend-info" id="trendRevenue">-</span>
                     </div>
                 </div>
 
@@ -62,17 +80,19 @@
                     </div>
                     <div class="label">
                         <h3 class="subtitle">Total Pemesanan</h3>
-                        <h3 class="nilai">30</h3>
+                        <h3 class="nilai" id="cardOrders">0</h3>
+                        <span class="trend-info" id="trendOrders">-</span>
                     </div>
                 </div>
 
                 <div class="card-content">
                     <div class="icon-card">
-                        <span class="menu"></span>
+                        <span class="terjual"></span>
                     </div>
                     <div class="label">
-                        <h3 class="subtitle">Menu Tersedia</h3>
-                        <h3 class="nilai">32/32</h3>
+                        <h3 class="subtitle">Total Item Terjual</h3>
+                        <h3 class="nilai" id="cardItems">0 porsi</h3>
+                        <span class="trend-info" id="trendItems">-</span>
                     </div>
                 </div>
             </section>
@@ -111,20 +131,92 @@
             </button>
         </div>
 
-        <div class="main-content">
-            <section class="content1">
-                <h3>Penjualan 7 Hari Terakhir</h3>
-            </section>
-            <section class="content2">
-                <div class="menu-terlaris">
-                    <h3>Top 5 Menu Terlaris</h3>
+        <div class="main-content laporan-main">
+            <h2 class="audit-title">Audit Log Transaksi</h2>
+
+            <!-- search bar -->
+            <div class="audit-toolbar">
+                <div class="search-bar">
+                    <span class="icon-search"></span>
+                    <input
+                        type="search"
+                        id="trxSearch"
+                        placeholder="Cari nomor transaksi atau tanggal/jam..."
+                        autocomplete="off"
+                    >
+                    <button type="button" class="clear" id="clearTrxSearch" hidden>&times;</button>
                 </div>
-                <div class="transaksi">
-                    <h3>Transaksi Terakhir</h3>
+
+                <div class="method-filter-wrap">
+                    <select id="methodFilter" class="method-select" aria-label="Pilih metode pembayaran">
+                        <option value="">Pilih metode</option>
+                        <option value="qris">QRIS</option>
+                        <option value="debit">Debit / CC</option>
+                        <option value="cash">Tunai</option>
+                    </select>
                 </div>
-            </section>
+            </div>
+
+            <div class="tabel-menu">
+                <table class="daftar-menu daftar-laporan">
+                    <thead>
+                        <tr>
+                            <th class="nama-kolom">Tanggal/Jam</th>
+                            <th class="nama-kolom">No. Transaksi</th>
+                            <th class="nama-kolom">Meja</th>
+                            <th class="nama-kolom">Total Item</th>
+                            <th class="nama-kolom">Total</th>
+                            <th class="nama-kolom">Metode</th>
+                            <th class="nama-kolom">Status</th>
+                            <th class="nama-kolom">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="auditTableBody">
+                        <!-- dirender otomatis oleh laporan.js -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- footer halaman page -->
+            <div class="audit-page" id="auditPage">
+                <span class="page-summary" id="pageSummary">Halaman 1 dari 1</span>
+                <div class="page-controls" id="pageControls">
+                    <!-- dirender otomatis oleh laporan.js -->
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- popup detail transaksi -->
+    <div class="popup-modal" id="trxDetailModal" aria-hidden="true">
+        <div class="modal-card trx-modal-card" role="dialog" aria-modal="true" aria-labelledby="trxModalTitle">
+            <div class="trx-modal-header">
+                <div>
+                    <h2 id="trxModalTitle">Detail Transaksi</h2>
+                    <p class="trx-modal-sub" id="trxModalCode">#TRX-</p>
+                </div>
+                <button type="button" class="trx-close-x" id="closeTrxModalBtn" aria-label="Tutup">&times;</button>
+            </div>
+
+            <div class="trx-detail-grid" id="trxDetailMeta"></div>
+
+            <div class="trx-items-section">
+                <h4>Rincian Pesanan</h4>
+                <ul class="trx-items-list" id="trxDetailItems"></ul>
+            </div>
+
+            <div class="trx-modal-footer">
+                <div class="trx-grand-total">
+                    <span>Total Pembayaran</span>
+                    <strong id="trxModalTotal">Rp 0</strong>
+                </div>
+                <button type="button" class="btn-tutup-modal" id="closeTrxModalFooter">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/frontend/js/api.js"></script>
     <script src="/frontend/js/Admin/admin.js"></script>
+    <script src="/frontend/js/Admin/laporan.js"></script>
 </body>
 </html>
